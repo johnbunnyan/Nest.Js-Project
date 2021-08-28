@@ -15,9 +15,10 @@ getAll():Movie[]{
     return this.movies
 }
 
-getOne(id:number):Movie{                     //id앞에 + 붙이먄 string->number변환
+getOne(id:number):Movie{   
+    console.log(typeof id)                  //id앞에 + 붙이면 string->number변환
     const movie = this.movies.find(movie => movie.id === id)
-    
+    console.log(movie)
     if(!movie){
         throw new NotFoundException(`Movie with ID: ${id} not found.`) //nest제공
     }
@@ -31,11 +32,12 @@ deleteOne(id:number){
 }
 
 create(movieData:CreateMovieDto){
+    console.log(this.movies)
     this.movies.push({
         id:this.movies.length + 1,
         ...movieData,
     })
-    console.log(this.movies)
+    
 }
 
 update(id:number, updateData:UpdaateMovieDto){
